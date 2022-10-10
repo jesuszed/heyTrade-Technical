@@ -18,7 +18,6 @@ public class PokemonController {
 	@Autowired
 	PokemonService pokemonService;
 
-
 	@GetMapping("/all")
 	public ResponseEntity<List<PokemonDTO>> getPokemons() {
 		return ResponseEntity.ok(pokemonService.findAll());
