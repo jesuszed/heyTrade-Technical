@@ -35,7 +35,7 @@ class PokemonControllerTest extends AbstractTest {
 	@Test
 	@Sql("/data-h2.sql")
 	void shouldReturnAllPokemons() throws Exception {
-		mvc.perform(get(apiName + apiVersion + "/all"))
+		mvc.perform(get(apiName + apiVersion + "/pokemons"))
 				.andDo(print()).andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(jsonPath("$").exists())

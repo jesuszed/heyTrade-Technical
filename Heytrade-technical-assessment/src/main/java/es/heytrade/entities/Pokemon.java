@@ -1,13 +1,18 @@
 package es.heytrade.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,11 +33,26 @@ public class Pokemon implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idPokemon")
 	private Long idPokemon;
-
-	@Column(name = "name", length = 100)
 	private String name;
+	private Integer cp;
+	private Integer hp;
+	private Double minWeight;
+	private Double maxWeight;
+	private Double maxHeight;
+	private Double minHeight;
+	private Boolean favourite;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_type")
+	@JsonBackReference
+	private List<Type> types;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_pokemon")
+	@JsonBackReference
+	private List<Pokemon> evolutions;
+
 
 
 }
