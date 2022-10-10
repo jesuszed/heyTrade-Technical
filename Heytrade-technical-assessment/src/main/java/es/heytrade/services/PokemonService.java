@@ -1,6 +1,6 @@
 package es.heytrade.services;
 
-import java.util.Set;
+import java.util.List;
 
 import es.heytrade.dtos.PokemonDTO;
 
@@ -8,7 +8,7 @@ import es.heytrade.dtos.PokemonDTO;
 public interface PokemonService {
 
 	//Retrieve all Pokemon GET
-	public Set<PokemonDTO> findAll();
+	public List<PokemonDTO> findAll();
 
 
 

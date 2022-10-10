@@ -1,5 +1,7 @@
 package es.heytrade.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "pokemon")
-public class Pokemon {
+public class Pokemon implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
