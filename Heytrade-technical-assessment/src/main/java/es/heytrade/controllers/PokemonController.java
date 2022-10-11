@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.heytrade.dtos.PokemonDTO;
+import es.heytrade.entities.Type;
 import es.heytrade.services.PokemonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -59,6 +60,17 @@ public class PokemonController {
 			value = "Pokemon's partial name ignoring case",
 			required = true) @PathVariable("name") String name) {
 		return ResponseEntity.ok(pokemonService.filterByName(name));
+	}
+
+	@ApiOperation(value = "Search for Pokemon by text.")
+	@GetMapping("/pokemons/filter/type/{type}")
+	public ResponseEntity<List<PokemonDTO>> getPokemon(@ApiParam(
+			name = "type",
+			type = "Type",
+			example = "1",
+			value = "Pokemon's type",
+			required = false) @PathVariable(name = "type", required = false) Type type) {
+		return ResponseEntity.ok(pokemonService.filterByTypes(type));
 	}
 
 

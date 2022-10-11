@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import es.heytrade.config.exceptions.EntityNotFoundException;
 import es.heytrade.dtos.PokemonDTO;
 import es.heytrade.entities.Pokemon;
+import es.heytrade.entities.Type;
 import es.heytrade.respositories.PokemonRepository;
 
 @Service
@@ -59,6 +60,25 @@ public class PokemonServiceImpl implements PokemonService {
 				.stream()
 				.map(pokemon -> mapper.map(pokemon, PokemonDTO.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<PokemonDTO> filterByTypes(Type type) {
+
+		return pokemonRepository.findByTypes(type)
+				.stream()
+				.map(pokemon -> mapper.map(pokemon, PokemonDTO.class))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public PokemonDTO setFavouriteTrue() {
+		return null;
+	}
+
+	@Override
+	public PokemonDTO setFavouriteFalse() {
+		return null;
 	}
 
 
