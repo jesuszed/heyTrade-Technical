@@ -1,2 +1,15 @@
-INSERT INTO Pokemon (name) VALUES ('CharmanderTest');
-INSERT INTO Pokemon (name) VALUES ('PikachuTest');
+INSERT INTO Pokemon (name, cp, hp, min_height, max_height , min_weight , max_weight, favourite) VALUES ('CharmanderTEST', 100, 200, 1.5, 2.5, 5, 6.5, true);
+INSERT INTO Pokemon (name, cp, hp, min_height, max_height , min_weight , max_weight, favourite) VALUES ('CharmeleonTEST', 200, 300, 1, 2, 5, 6.5, false);
+INSERT INTO Pokemon (name, cp, hp, min_height, max_height , min_weight , max_weight, favourite) VALUES ('CharizardTEST', 200, 300, 1, 2, 5, 6.5, false);
+INSERT INTO Type (name) VALUES ('FireTEST');
+INSERT INTO Type (name) VALUES ('DragonTEST');
+INSERT INTO Pokemon_types VALUES(1,1);
+INSERT INTO Pokemon_types VALUES(2,1);
+INSERT INTO Pokemon_types VALUES(3,1);
+INSERT INTO Pokemon_types VALUES(3,2);
+INSERT INTO Pokemon_evolutions VALUES(1,2);
+INSERT INTO Pokemon_evolutions VALUES(2,1);
+INSERT INTO Pokemon_evolutions VALUES(1,3);
+INSERT INTO Pokemon_evolutions VALUES(3,1);
+INSERT INTO Pokemon_evolutions VALUES(2,3);
+INSERT INTO Pokemon_evolutions VALUES(3,2);

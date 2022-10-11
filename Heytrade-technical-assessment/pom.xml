@@ -15,6 +15,7 @@
 	<description>HeyTrade BE Technical Assessment V2 - Pokedex</description>
 	<properties>
 		<java.version>11</java.version>
+		<docker.image.prefix>Heytrade-technical-assessment</docker.image.prefix>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -77,7 +78,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin>	
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

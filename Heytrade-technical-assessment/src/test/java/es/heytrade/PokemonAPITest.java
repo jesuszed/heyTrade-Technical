@@ -12,13 +12,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
-
-@ActiveProfiles("dev")
 @TestInstance(Lifecycle.PER_CLASS)
-class PokemonControllerTest extends AbstractTest {
+class PokemonAPITest extends AbstractTest {
 
 	@Value("${api.name}")
 	String apiName;
@@ -33,7 +31,7 @@ class PokemonControllerTest extends AbstractTest {
 	}
 
 	@Test
-	@Sql("/data-h2.sql")
+	@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, value = "/data-h2.sql")
 	void shouldReturnAllPokemons() throws Exception {
 		mvc.perform(get(apiName + apiVersion + "/pokemons"))
 				.andDo(print()).andExpect(status().isOk())
@@ -41,8 +39,19 @@ class PokemonControllerTest extends AbstractTest {
 				.andExpect(jsonPath("$").exists())
 				.andExpect(jsonPath("$[0]").exists())
 				.andExpect(jsonPath("$[0].idPokemon").value("1"))
-				.andExpect(jsonPath("$[0].name").value("CharmanderTest"));
+				.andExpect(jsonPath("$[0].name").value("CharmanderTEST"));
+	}
 
+	@Test
+	@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, value = "/data-h2.sql")
+	void shouldReturnAllFavouritePokemons() throws Exception {
+		mvc.perform(get(apiName + apiVersion + "/pokemons/favourites"))
+				.andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(jsonPath("$").exists())
+				.andExpect(jsonPath("$[0]").exists())
+				.andExpect(jsonPath("$[0].idPokemon").value("1"))
+				.andExpect(jsonPath("$[0].name").value("CharmanderTEST"));
 	}
 
 }
