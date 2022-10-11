@@ -56,7 +56,7 @@ public class PokemonController {
 			name = "name",
 			type = "String",
 			example = "Char",
-			value = "Pokemon's partial name",
+			value = "Pokemon's partial name ignoring case",
 			required = true) @PathVariable("name") String name) {
 		return ResponseEntity.ok(pokemonService.filterByName(name));
 	}
