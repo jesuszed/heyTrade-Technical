@@ -13,8 +13,4 @@ public interface PokemonRepository extends JpaRepository<Pokemon, Long> {
 	List<Pokemon> findByNameContainingIgnoreCase(String name);
 
 	List<Pokemon> findByTypes(Type type);
-
-	Pokemon setFavouriteFalse();
-
-	Pokemon setFavouriteTrue();
 }

@@ -43,16 +43,10 @@ public interface PokemonService {
 	public List<PokemonDTO> filterByTypes(Type type);
 
 	/**
-	 * Add Pokemon to favourites
-	 * @return
+	 * Add/Remove Pokemon to/from favourites
+	 * @return Boolean of success of the operation
 	 */
-	public PokemonDTO setFavouriteTrue();
-
-	/**
-	 * Remove Pokemon from favourites
-	 * @return
-	 */
-	public PokemonDTO setFavouriteFalse();
+	public Boolean switchFavouritePokemon(Long idPokemon);
 
 
 

@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -71,6 +72,25 @@ public class PokemonController {
 			value = "Pokemon's type",
 			required = false) @PathVariable(name = "type", required = false) Type type) {
 		return ResponseEntity.ok(pokemonService.filterByTypes(type));
+	}
+
+	@ApiOperation(value = "Add/Remove Pokemon to/from favourites")
+	@PutMapping("/pokemons/favourites/{id}")
+	public ResponseEntity<PokemonDTO> updateFavouritePokemon(@ApiParam(
+			name = "idPokemon",
+			type = "long",
+			example = "1",
+			value = "Pokemon's identification",
+			required = true) @PathVariable("id") Long idPokemon) {
+
+		if (Boolean.TRUE.equals(pokemonService.switchFavouritePokemon(idPokemon))) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+
+
+
 	}
 
 

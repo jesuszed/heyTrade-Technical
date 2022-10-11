@@ -72,13 +72,21 @@ public class PokemonServiceImpl implements PokemonService {
 	}
 
 	@Override
-	public PokemonDTO setFavouriteTrue() {
-		return null;
-	}
+	public Boolean switchFavouritePokemon(Long idPokemon) {
 
-	@Override
-	public PokemonDTO setFavouriteFalse() {
-		return null;
+		Optional<Pokemon> optPokemon = pokemonRepository.findById(idPokemon);
+
+
+		if (optPokemon.isPresent()) {
+			Pokemon pokemon = optPokemon.get();
+			pokemon.setFavourite(!pokemon.getFavourite());
+			pokemonRepository.save(pokemon);
+			return true;
+		}
+		return false;
+
+
+
 	}
 
 
